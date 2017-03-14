@@ -1,13 +1,21 @@
+import ReSwift
 import UIKit
 
-class ViewController: UITableViewController {
+class ViewController: UITableViewController, StoreSubscriber {
 
-    private var counts = [0]
+    private var counters: Array<Int>?
+
+    override func viewWillAppear(_ animated: Bool) {
+        globalAppStore.subscribe(self)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        globalAppStore.unsubscribe(self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Total: 0"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Counter",
                                                             style: .plain,
                                                             target: self,
@@ -18,13 +26,13 @@ class ViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return counts.count
+        return counters?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CounterCell", for: indexPath)
 
-        let count = counts[indexPath.row]
+        let count = counters![indexPath.row]
         cell.textLabel?.text = String(count)
 
         let accessoryView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
@@ -48,28 +56,21 @@ class ViewController: UITableViewController {
     }
 
     @IBAction func addCounterPressed() {
-        counts.append(0)
-        tableView.reloadData()
+        globalAppStore.dispatch(ActionAddCounter())
     }
 
     @IBAction func incrementPressed(sender: UIButton) {
         let countIndex = sender.tag
-        counts[countIndex] += 1
-
-        tableView.reloadData()
-        updateTitle()
+        globalAppStore.dispatch(ActionIncrementCounter(counterIndex: countIndex))
     }
 
     @IBAction func decrementPressed(sender: UIButton) {
         let countIndex = sender.tag
-        counts[countIndex] -= 1
-
-        tableView.reloadData()
-        updateTitle()
+        globalAppStore.dispatch(ActionDecrementCounter(counterIndex: countIndex))
     }
 
-    private func updateTitle() {
-        let total = counts.reduce(0) { a, b in a + b }
+    func newState(state: AppState) {
+        let total = state.counters.reduce(0) { a, b in a + b }
         navigationItem.title = "Total: \(total)"
 
         let totalColor: UIColor = {
@@ -82,8 +83,12 @@ class ViewController: UITableViewController {
             }
         }()
 
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: totalColor]
-    }
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSForegroundColorAttributeName: totalColor
+        ]
 
+        counters = state.counters
+        tableView.reloadData()
+    }
 }
 

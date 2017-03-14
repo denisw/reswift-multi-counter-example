@@ -12,7 +12,10 @@
 		C8F3D47A1E76DA0A00D511D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8F3D4791E76DA0A00D511D5 /* Assets.xcassets */; };
 		C8F3D47D1E76DA0A00D511D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F3D47B1E76DA0A00D511D5 /* LaunchScreen.storyboard */; };
 		C8F3D4861E77DE7D00D511D5 /* ReSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F3D4851E77DE7D00D511D5 /* ReSwift.framework */; };
-		C8F3D48A1E77DF9100D511D5 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F3D4891E77DF9100D511D5 /* AppState.swift */; };
+		C8F3D48A1E77DF9100D511D5 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F3D4891E77DF9100D511D5 /* State.swift */; };
+		C8F3D48C1E77EF0200D511D5 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F3D48B1E77EF0200D511D5 /* Actions.swift */; };
+		C8F3D48E1E77EF7900D511D5 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F3D48D1E77EF7900D511D5 /* Reducer.swift */; };
+		C8F3D4901E77F02000D511D5 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F3D48F1E77F02000D511D5 /* Store.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +26,10 @@
 		C8F3D47C1E76DA0A00D511D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C8F3D47E1E76DA0A00D511D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8F3D4851E77DE7D00D511D5 /* ReSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReSwift.framework; path = Carthage/Build/iOS/ReSwift.framework; sourceTree = "<group>"; };
-		C8F3D4891E77DF9100D511D5 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		C8F3D4891E77DF9100D511D5 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		C8F3D48B1E77EF0200D511D5 /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		C8F3D48D1E77EF7900D511D5 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		C8F3D48F1E77F02000D511D5 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +64,7 @@
 		C8F3D4711E76DA0A00D511D5 /* ReSwiftMultiCounter */ = {
 			isa = PBXGroup;
 			children = (
-				C8F3D4881E77DF7300D511D5 /* Store */,
+				C8F3D4881E77DF7300D511D5 /* ReSwift */,
 				C8F3D4721E76DA0A00D511D5 /* AppDelegate.swift */,
 				C8F3D4741E76DA0A00D511D5 /* ViewController.swift */,
 				C8F3D4791E76DA0A00D511D5 /* Assets.xcassets */,
@@ -76,12 +82,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C8F3D4881E77DF7300D511D5 /* Store */ = {
+		C8F3D4881E77DF7300D511D5 /* ReSwift */ = {
 			isa = PBXGroup;
 			children = (
-				C8F3D4891E77DF9100D511D5 /* AppState.swift */,
+				C8F3D4891E77DF9100D511D5 /* State.swift */,
+				C8F3D48B1E77EF0200D511D5 /* Actions.swift */,
+				C8F3D48D1E77EF7900D511D5 /* Reducer.swift */,
+				C8F3D48F1E77F02000D511D5 /* Store.swift */,
 			);
-			name = Store;
+			name = ReSwift;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,9 +183,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8F3D48A1E77DF9100D511D5 /* AppState.swift in Sources */,
+				C8F3D48A1E77DF9100D511D5 /* State.swift in Sources */,
+				C8F3D48C1E77EF0200D511D5 /* Actions.swift in Sources */,
 				C8F3D4751E76DA0A00D511D5 /* ViewController.swift in Sources */,
+				C8F3D4901E77F02000D511D5 /* Store.swift in Sources */,
 				C8F3D4731E76DA0A00D511D5 /* AppDelegate.swift in Sources */,
+				C8F3D48E1E77EF7900D511D5 /* Reducer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
