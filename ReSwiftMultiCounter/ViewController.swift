@@ -56,17 +56,17 @@ class ViewController: UITableViewController, StoreSubscriber {
     }
 
     @IBAction func addCounterPressed() {
-        globalAppStore.dispatch(ActionAddCounter())
+        globalAppStore.dispatch(AddCounterAction())
     }
 
     @IBAction func incrementPressed(sender: UIButton) {
         let countIndex = sender.tag
-        globalAppStore.dispatch(ActionIncrementCounter(counterIndex: countIndex))
+        globalAppStore.dispatch(IncrementCounterAction(counterIndex: countIndex))
     }
 
     @IBAction func decrementPressed(sender: UIButton) {
         let countIndex = sender.tag
-        globalAppStore.dispatch(ActionDecrementCounter(counterIndex: countIndex))
+        globalAppStore.dispatch(DecrementCounterAction(counterIndex: countIndex))
     }
 
     func newState(state: AppState) {

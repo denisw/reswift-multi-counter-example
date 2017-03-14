@@ -7,11 +7,11 @@ struct AppReducer: Reducer {
         var counters = state.counters
 
         switch action {
-        case let action as ActionIncrementCounter:
+        case let action as IncrementCounterAction:
             counters[action.counterIndex] += 1
-        case let action as ActionDecrementCounter:
+        case let action as DecrementCounterAction:
             counters[action.counterIndex] -= 1
-        case _ as ActionAddCounter:
+        case _ as AddCounterAction:
             counters.append(0)
         default:
             break

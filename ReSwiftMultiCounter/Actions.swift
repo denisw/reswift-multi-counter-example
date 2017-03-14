@@ -1,12 +1,12 @@
 import ReSwift
 
-struct ActionIncrementCounter: Action {
+struct IncrementCounterAction: Action {
     let counterIndex: Int
 }
 
-struct ActionDecrementCounter: Action {
+struct DecrementCounterAction: Action {
     let counterIndex: Int
 }
 
-struct ActionAddCounter: Action {
+struct AddCounterAction: Action {
 }
