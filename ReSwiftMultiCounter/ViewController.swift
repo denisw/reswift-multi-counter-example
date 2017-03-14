@@ -16,10 +16,18 @@ class ViewController: UITableViewController, StoreSubscriber {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Counter",
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(addCounterPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Add Counter",
+            style: .plain,
+            target: self,
+            action: #selector(addCounterPressed)
+        )
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Undo",
+            style: .plain,
+            target: self,
+            action: #selector(undoPressed)
+        )
 
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CounterCell")
@@ -57,6 +65,10 @@ class ViewController: UITableViewController, StoreSubscriber {
 
     @IBAction func addCounterPressed() {
         globalAppStore.dispatch(AddCounterAction())
+    }
+
+    @IBAction func undoPressed() {
+        globalAppStore.dispatch(UndoAction())
     }
 
     @IBAction func incrementPressed(sender: UIButton) {

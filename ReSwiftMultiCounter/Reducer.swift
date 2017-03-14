@@ -3,8 +3,8 @@ import ReSwift
 struct AppReducer: Reducer {
 
     func handleAction(action: Action, state: AppState?) -> AppState {
-        let state = state ?? AppState(counters: [0])
-        var counters = state.counters
+        var counters = state?.counters ?? [0]
+        var previousState = state
 
         switch action {
         case let action as IncrementCounterAction:
@@ -13,11 +13,17 @@ struct AppReducer: Reducer {
             counters[action.counterIndex] -= 1
         case _ as AddCounterAction:
             counters.append(0)
+        case _ as UndoAction:
+            counters = state?.previousState?.counters ?? counters
+            previousState = state?.previousState?.previousState
         default:
             break
         }
 
-        return AppState(counters: counters)
+        return AppState(
+            counters: counters,
+            previousState: previousState
+        )
     }
     
 }

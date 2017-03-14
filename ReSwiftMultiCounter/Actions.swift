@@ -10,3 +10,6 @@ struct DecrementCounterAction: Action {
 
 struct AddCounterAction: Action {
 }
+
+struct UndoAction: Action {
+}

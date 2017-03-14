@@ -1,8 +1,14 @@
 import Foundation
 import ReSwift
 
-struct AppState: StateType {
+class AppState: StateType {
     let counters: [Int]
+    let previousState: AppState?
+
+    init(counters: [Int], previousState: AppState?) {
+        self.counters = counters
+        self.previousState = previousState
+    }
 }
 
 
