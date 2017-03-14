@@ -3,7 +3,7 @@ import UIKit
 
 class ViewController: UITableViewController, StoreSubscriber {
 
-    private var counters: Array<Int>?
+    private var counters: [Int]?
 
     override func viewWillAppear(_ animated: Bool) {
         globalAppStore.subscribe(self)
