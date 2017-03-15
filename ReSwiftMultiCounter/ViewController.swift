@@ -6,7 +6,7 @@ class ViewController: UITableViewController, StoreSubscriber {
     private var counters: [Int]?
 
     override func viewWillAppear(_ animated: Bool) {
-        globalAppStore.subscribe(self)
+        globalAppStore.subscribe(self) { state in state.counters }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -81,13 +81,13 @@ class ViewController: UITableViewController, StoreSubscriber {
         globalAppStore.dispatch(DecrementCounterAction(counterIndex: countIndex))
     }
 
-    func newState(state: AppState) {
-        updateTitle(fromState: state)
-        updateTableView(fromState: state)
+    func newState(state counters: [Int]) {
+        updateTitle(fromState: counters)
+        updateTableView(fromState: counters)
     }
 
-    private func updateTitle(fromState state: AppState) {
-        let total = state.counters.reduce(0) { a, b in a + b }
+    private func updateTitle(fromState counters: [Int]) {
+        let total = counters.reduce(0) { a, b in a + b }
         navigationItem.title = "Total: \(total)"
 
         let totalColor: UIColor = {
@@ -105,8 +105,8 @@ class ViewController: UITableViewController, StoreSubscriber {
         ]
     }
 
-    private func updateTableView(fromState state: AppState) {
-        counters = state.counters
+    private func updateTableView(fromState counters: [Int]) {
+        self.counters = counters
         tableView.reloadData()
     }
 }
