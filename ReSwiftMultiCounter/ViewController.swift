@@ -82,13 +82,18 @@ class ViewController: UITableViewController, StoreSubscriber {
     }
 
     func newState(state: AppState) {
+        updateTitle(fromState: state)
+        updateTableView(fromState: state)
+    }
+
+    private func updateTitle(fromState state: AppState) {
         let total = state.counters.reduce(0) { a, b in a + b }
         navigationItem.title = "Total: \(total)"
 
         let totalColor: UIColor = {
-            if (total > 0) {
+            if total > 0 {
                 return UIColor(red: 0, green: 0.5, blue: 0, alpha: 1)
-            } else if (total < 0) {
+            } else if total < 0 {
                 return UIColor.red
             } else {
                 return UIColor.darkText
@@ -98,7 +103,9 @@ class ViewController: UITableViewController, StoreSubscriber {
         navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName: totalColor
         ]
+    }
 
+    private func updateTableView(fromState state: AppState) {
         counters = state.counters
         tableView.reloadData()
     }
