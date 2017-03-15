@@ -109,5 +109,6 @@ class ViewController: UITableViewController, StoreSubscriber {
         self.counters = counters
         tableView.reloadData()
     }
+
 }
 
